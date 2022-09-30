@@ -1,0 +1,20 @@
+{% macro render_field(field) %}
+<dt>{{ field.label }}</dt>
+<dd>{{ field(**kwargs)|safe }}</dd>
+{% if field.errors %}
+<ul class="errors">
+    {% for error in field.errors %}
+        <li>{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endmacro %}
+
+
+{#
+フォーム画面を整えて、エラー内容を表示してくれる処理をまとめている
+
+※{{ field(**kwargs)|safe }}
+safeを付けることで、HTMLをエスケープせずに表示することができます。
+WTFormsで既にエスケープ済みのためこのように記述するようです。
+#}
